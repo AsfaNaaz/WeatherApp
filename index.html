@@ -47,20 +47,15 @@
         const searchBtn=document.querySelector(".search button");
         const weatherIcon=document.querySelector(".weather-icon");
 
-        async function checkweather(city){//async it return new promise which will be resolve with the value return by the async funtion
-            const response=await fetch(apiurl +city+ `&appid=${apikey}`);//fetch jab tak complete n ho jaye await karo (wait karo ) response m daal diya mike y naa mile
+        async function checkweather(city){
+            const response=await fetch(apiurl +city+ `&appid=${apikey}`); 
             if(response.status==404)
             {
                 document.querySelector(".error").style.display="block";
                 document.querySelector(".weather").style.display="none";
             }
             else{
-            var data=await response.json();//await halts(rok k rakhna) the execution until a promise is fulfilled or rejected .
-            //json is a file format in which we store data using key and value pairs 
-
-           
-        
-        
+            var data=await response.json();
         document.querySelector(".city").innerHTML=data.name;//to update the city name 
         document.querySelector(".temp").innerHTML=Math.round(data.main.temp)+"°c";//temp updation
         document.querySelector(".humidity").innerHTML=data.main.humidity+"%";
